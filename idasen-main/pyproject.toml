@@ -1,0 +1,63 @@
+[project]
+name = "idasen"
+description = "ikea IDÅSEN desk API and CLI."
+authors = [{ name = "Alex Martens", email = "alex+idasen@thinglab.org" }]
+version = "0.12.0"
+license = "MIT"
+readme = "README.rst"
+keywords = ["ikea", "idasen", "bluetooth", "linak", "ble"]
+requires-python = ">= 3.9"
+dependencies = [
+    "bleak>=0.15",
+    "pyyaml>=5.3.1",
+    "voluptuous>=0.12",
+]
+
+[project.urls]
+Repository = "https://github.com/newAM/idasen"
+Documentation = "https://newam.github.io/idasen"
+Changelog = "https://github.com/newAM/idasen/blob/main/CHANGELOG.md"
+Issues = "https://github.com/newAM/idasen/issues"
+
+[project.scripts]
+idasen = "idasen.cli:main"
+
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[dependency-groups]
+dev = [
+    "coveralls>=4.0.1",
+    "mypy>=1.14.1",
+    "pytest>=8.3.4",
+    "pytest-asyncio>=0.25.2",
+    "pytest-cov>=6.0.0",
+    "ruff>=0.9.1",
+    "sphinx>=7.4.7",
+    "sphinx-rtd-theme>=3.0.2",
+    "tomli;python_version<'3.11'",
+    "types-pyyaml>=6.0.12.20241230",
+]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+asyncio_default_fixture_loop_scope = "session"
+
+[tool.mypy]
+warn_unused_configs = true
+ignore_missing_imports = true
+
+[tool.ruff.lint]
+extend-select = [
+    # flake8-builtins
+    "A",
+    # flake8-unused-arguments
+    "ARG",
+    # flake8-bugbear
+    "B",
+    # pep8-naming
+    "N",
+    # unused-noqa
+    "RUF100",
+]
